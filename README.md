@@ -77,9 +77,9 @@ rfpr, rtpr, rthresholds = roc_curve(yr_test, yr_pred_prob)
 plot_roc_curve(rfpr, rtpr)
 ```
 
-![png]()
+![png](https://raw.githubusercontent.com/joctal/tcc/master/output_170_0.png)
 
-
+cc
 
 
 
