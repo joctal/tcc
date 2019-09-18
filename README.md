@@ -46,3 +46,16 @@ As seguintes propriedades acústicas de cada voz são medidas:
 ### TCC_analise_modelo_regressao_logistica.ipynb (arquivo jupyter)
 ### TCC_analise_modelo_regressao_logistica.pdf   (resultados em pdf)
 ### TCC_analise_modelo_regressao_logistica.html   (resultados em html com as imagens)
+
+
+
+
+
+# Análise  Árvore de Classificação e Regressão ( CART ).
+
+### TCC_CART.ipynb (arquivo jupyter)
+
+### TCC_CART.pdf   (resultados em pdf)
+
+### TCC_CART.html   (resultados em html com as imagens)
+
