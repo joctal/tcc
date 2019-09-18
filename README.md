@@ -61,3 +61,25 @@ As seguintes propriedades acústicas de cada voz são medidas:
 
 
 
+
+
+### Curva ROC
+
+```python
+yr_pred_prob = Rclassifier.predict_proba(Xr_test)[:, 1]
+```
+
+```python
+rfpr, rtpr, rthresholds = roc_curve(yr_test, yr_pred_prob)
+```
+
+```python
+plot_roc_curve(rfpr, rtpr)
+```
+
+![png]()
+
+
+
+
+
