@@ -1,4 +1,4 @@
-# Analise exploratória.
+# Análise exploratória.
 
 ### Introdução.
 
@@ -31,8 +31,18 @@ As seguintes propriedades acústicas de cada voz são medidas:
 - **modindx**  : índice de modulação. Calculado como a diferença absoluta acumulada entre medições adjacentes de frequências fundamentais divididas pela faixa de frequência.
 - **label**  : rotulo de identificador da amostra em relação ao sexo, adicionado durante a gravação "male" ou "female".
 
+# Análise exploratória.
+
 ### TCC_ANALISE_Descritiva.ipynb (arquivo jupyter)
 ###  TCC_ANALISE_Descritiva.pdf   (resultados em pdf)
-###  TCC_ANALISE_Descritiva.html   (resultados em html com as imagens inclusas)
+###  TCC_ANALISE_Descritiva.html   (resultados em html com as imagens)
 ###  R_TCC_ANALISE_EXPLORATORIA.Rmd  (análise feita em Rstudio)
 ###  R_TCC_ANALISE_EXPLORATORIA.pdf (resultados sem tratamento em R)
+
+---
+
+# Análise  regressão logística.
+
+### TCC_analise_modelo_regressao_logistica.ipynb (arquivo jupyter)
+### TCC_analise_modelo_regressao_logistica.pdf   (resultados em pdf)
+### TCC_analise_modelo_regressao_logistica.html   (resultados em html com as imagens)
