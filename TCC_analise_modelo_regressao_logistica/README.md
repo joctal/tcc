@@ -681,7 +681,7 @@ Este valor indica a quantidade de registros que foram classificados como positiv
 
 ```python
 TP = confusion_matrix_lda['Previsão dos positivos'][1]
-dfTP = pandas.DataFrame(TP, index = ['Negativos verdadeiros'], columns = ['Quantidade acertos'] )
+dfTP = pandas.DataFrame(TP, index = ['Positivos verdadeiros'], columns = ['Quantidade acertos'] )
 ```
 
 
@@ -715,7 +715,7 @@ dfTP
   </thead>
   <tbody>
     <tr>
-      <td>Negativos verdadeiros</td>
+      <td>Positivos verdadeiros</td>
       <td>389</td>
     </tr>
   </tbody>
@@ -730,7 +730,7 @@ print(dfTP)
 ```
 
                            Quantidade acertos
-    Negativos verdadeiros                 389
+    Positivos verdadeiros                 389
     
 
 ---
@@ -741,7 +741,7 @@ Este valor indica a quantidade de registros que foram classificados como negativ
 
 ```python
 TN = confusion_matrix_lda['Previsão dos negativos'][0]
-dfTN = pandas.DataFrame(TN, index = ['Falso Negativo'], columns = ['Quantidade acertos'] )
+dfTN = pandas.DataFrame(TN, index = ['Negativo verdadeiro'], columns = ['Quantidade acertos'] )
 ```
 
 
@@ -775,7 +775,7 @@ dfTN
   </thead>
   <tbody>
     <tr>
-      <td>Falso Negativo</td>
+      <td>Negativo verdadeiro</td>
       <td>477</td>
     </tr>
   </tbody>
@@ -790,7 +790,7 @@ print(dfTN)
 ```
 
                     Quantidade acertos
-    Falso Negativo                 477
+    Negativo verdadeiro                 477
     
 
 ---
@@ -861,7 +861,7 @@ Este valor indica a quantidade de registros que foram classificados como coment�
 
 ```python
 FN = confusion_matrix_lda['Previsão dos negativos'][1]
-dfFN = pandas.DataFrame(FN, index = ['Negativos verdadeiros'], columns = ['Quantidade acertos'] )
+dfFN = pandas.DataFrame(FN, index = ['Falso Negativos'], columns = ['Quantidade acertos'] )
 ```
 
 
@@ -895,7 +895,7 @@ dfFN
   </thead>
   <tbody>
     <tr>
-      <td>Negativos verdadeiros</td>
+      <td>Falso Negativos</td>
       <td>68</td>
     </tr>
   </tbody>
@@ -910,7 +910,7 @@ print(dfFN)
 ```
 
                            Quantidade acertos
-    Negativos verdadeiros                  68
+    Falso Negativos                  68
     
 
 ---

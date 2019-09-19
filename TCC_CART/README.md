@@ -87,7 +87,7 @@ dataset[["meanfreq","sd","median"]].head(2)
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -173,7 +173,6 @@ plt.show()
 
 ---
 
-
 ---
 
 
@@ -213,7 +212,7 @@ print(dataset.head().transpose())
     dfrange             0    0.046875   0.0078125   0.554688    5.47656
     modindx      0.133737    0.124252    0.124252    0.12905   0.126195
     label            male        male        male       male       male
-    
+
 
 ##  3)  Removendo indexador salvo durante a análise da base.
 
@@ -250,7 +249,7 @@ print(dataset.head().transpose())
     dfrange           0    0.046875   0.0078125   0.554688    5.47656
     modindx    0.133737    0.124252    0.124252    0.12905   0.126195
     label          male        male        male       male       male
-    
+
 
 ##  4)  Substituindo female=1, male=0 e troca por o rótulo label=sexo.
 
@@ -292,7 +291,7 @@ print(df.head().transpose())
     dfrange   0.000000  0.046875  0.007812  0.554688  5.476562
     modindx   0.133737  0.124252  0.124252  0.129050  0.126195
     sexo      0.000000  0.000000  0.000000  0.000000  0.000000
-    
+
 
 #  5)   Dataset: Train/Test Split para o modelo de Árvore de Classificação e Regressão.
 Esse método divide o conjunto de dados em duas partes: um conjunto de treinamento e um conjunto de testes. O conjunto de treinamento é usado para treinar o modelo. Também podemos medir a precisão do modelo no conjunto de treinamento, mas não devemos avaliar modelos com base somente nessa métrica.
@@ -334,7 +333,7 @@ print(X_entrada.head().transpose())
     maxdom    0.007812  0.054688  0.015625  0.562500  5.484375
     dfrange   0.000000  0.046875  0.007812  0.554688  5.476562
     modindx   0.133737  0.124252  0.124252  0.129050  0.126195
-    
+
 
 
 ```python
@@ -414,7 +413,7 @@ dftreinoteste
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -581,7 +580,7 @@ confusion_matrix_lda
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -622,7 +621,7 @@ print(confusion_matrix_lda)
                Previsão dos negativos  Previsão dos positivos  Total
     Negativos                     480                      14    494
     Positivos                      32                     425    457
-    
+
 
 
 ```python
@@ -636,7 +635,6 @@ plt.show()
 
 ![png](output_55_0.png)
 
-
 ---
 
 ### True Positives:TP
@@ -645,7 +643,7 @@ Este valor indica a quantidade de registros que foram classificados como positiv
 
 ```python
 TP = confusion_matrix_lda['Previsão dos positivos'][1]
-dfTP = pandas.DataFrame(TP, index = ['Negativos verdadeiros'], columns = ['Quantidade acertos'] )
+dfTP = pandas.DataFrame(TP, index = ['Positivos verdadeiros'], columns = ['Quantidade acertos'] )
 ```
 
 
@@ -665,7 +663,7 @@ dfTP
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -679,7 +677,7 @@ dfTP
   </thead>
   <tbody>
     <tr>
-      <td>Negativos verdadeiros</td>
+      <td>Positivos verdadeiros</td>
       <td>425</td>
     </tr>
   </tbody>
@@ -694,8 +692,7 @@ print(dfTP)
 ```
 
                            Quantidade acertos
-    Negativos verdadeiros                 425
-    
+    Positivos verdadeiros                 425
 
 ---
 
@@ -704,8 +701,8 @@ Este valor indica a quantidade de registros que foram classificados como negativ
 
 
 ```python
-TN = confusion_matrix_lda['Previsão dos negativos'][0]
-dfTN = pandas.DataFrame(TN, index = ['Falso Negativo'], columns = ['Quantidade acertos'] )
+Positivos verdadeirosTN = confusion_matrix_lda['Previsão dos negativos'][0]
+dfTN = pandas.DataFrame(TN, index = ['Negativo verdadeiro'], columns = ['Quantidade acertos'] )
 ```
 
 
@@ -725,7 +722,7 @@ dfTN
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -739,7 +736,7 @@ dfTN
   </thead>
   <tbody>
     <tr>
-      <td>Falso Negativo</td>
+      <td>Negativo verdadeiro</td>
       <td>480</td>
     </tr>
   </tbody>
@@ -754,8 +751,7 @@ print(dfTN)
 ```
 
                     Quantidade acertos
-    Falso Negativo                 480
-    
+    Negativo verdadeiro                 480
 
 ---
 
@@ -785,7 +781,7 @@ dfFP
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -815,7 +811,6 @@ print(dfFP)
 
                     Quantidade acertos
     Falso Positivo                  14
-    
 
 ---
 
@@ -825,7 +820,7 @@ Este valor indica a quantidade de registros que foram classificados como coment�
 
 ```python
 FN = confusion_matrix_lda['Previsão dos negativos'][1]
-dfFN = pandas.DataFrame(FN, index = ['Negativos verdadeiros'], columns = ['Quantidade acertos'] )
+dfFN = pandas.DataFrame(FN, index = ['Falso Negativos'], columns = ['Quantidade acertos'] )
 ```
 
 
@@ -845,7 +840,7 @@ dfFN
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -859,7 +854,7 @@ dfFN
   </thead>
   <tbody>
     <tr>
-      <td>Negativos verdadeiros</td>
+      <td>Falso Negativos</td>
       <td>32</td>
     </tr>
   </tbody>
@@ -874,8 +869,7 @@ print(dfFN)
 ```
 
                            Quantidade acertos
-    Negativos verdadeiros                  32
-    
+    Falso Negativos                   32
 
 ---
 
@@ -909,7 +903,7 @@ dfSpecificity
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -939,7 +933,6 @@ print(dfSpecificity)
 
                  resultado
     Specificity    0.97166
-    
 
 ---
 
@@ -962,7 +955,7 @@ Accuracy= classifier.score(X_test, y_test)
     0.9516298633017876
     0.9516298633017876
     Accuracy  95.16298633017875
-    
+
 
 
 ```python
@@ -982,7 +975,7 @@ dfAccuracy
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1012,7 +1005,6 @@ print(dfAccuracy)
 
               resultado
     Accuracy    0.95163
-    
 
 ---
 
@@ -1037,7 +1029,7 @@ Recall= recall_score(y_test, y_pred)
 
     0.9299781181619255
     0.9299781181619255
-    
+
 
 
 ```python
@@ -1057,7 +1049,7 @@ dfRecall
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1087,7 +1079,6 @@ print(dfRecall)
 
                           resultado
     Sensibilidade-Recall   0.929978
-    
 
 ---
 
@@ -1107,7 +1098,7 @@ FalsePositveRate = FP / float(TN + FP)
 ```
 
     0.02834008097165992
-    
+
 
 
 ```python
@@ -1127,7 +1118,7 @@ dfFalsePositveRate
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1157,7 +1148,6 @@ print(dfFalsePositveRate)
 
                            resultado
     Taxa de Falso Positvo    0.02834
-    
 
 ---
 ### Precisão (Precision)
@@ -1176,7 +1166,7 @@ Precision = precision_score(y_test, y_pred)
 
     0.9681093394077449
     0.9681093394077449
-    
+
 
 
 ```python
@@ -1196,7 +1186,7 @@ dfPrecision
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1226,7 +1216,6 @@ print(dfPrecision)
 
               resultado
     Precisão   0.968109
-    
 
 ---
 
@@ -1252,7 +1241,7 @@ print(F1Score)
 ```
 
     2.7899343544857764
-    
+
 
 
 ```python
@@ -1272,7 +1261,7 @@ dfF1Score
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1302,7 +1291,6 @@ print(dfF1Score)
 
               resultado
     F1 Score   2.789934
-    
 
 ---
 ### Curva ROC
@@ -1340,7 +1328,6 @@ plot_roc_curve(fpr, tpr)
 
 ![png](output_102_0.png)
 
-
 ---
 
 ### AUC (área sob a curva) da Curva ROC
@@ -1353,7 +1340,7 @@ Auc=roc_auc_score(y_test, y_pred_prob)
 ```
 
     0.9508190185951327
-    
+
 
 
 ```python
@@ -1373,7 +1360,7 @@ dfAuc
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1403,7 +1390,6 @@ print(dfAuc)
 
          resultado
     AUC   0.950819
-    
 
 ---
 ### Histograma das Probabilidades da Previsão.
@@ -1427,7 +1413,6 @@ plt.ylabel('Frequência')
 
 
 ![png](output_108_1.png)
-
 
 ---
 ### Precisão Geral (Accuracy_cross) por validação cruzada.
@@ -1464,7 +1449,7 @@ dfaccuracy_cross
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1494,7 +1479,6 @@ print(dfaccuracy_cross)
 
                                     resultado
     Acurácia por validação cruzada   0.951753
-    
 
 ---
 ### Taxa entre as Accuracy e Accuracy_cross.
@@ -1511,7 +1495,7 @@ RateLossAAC = (Accuracy - accuracy_cross)/ Accuracy * accuracy_cross * 100
 ```
 
     -0.012359594365665357
-    
+
 
 
 ```python
@@ -1531,7 +1515,7 @@ dfRateLossAAC
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1561,7 +1545,7 @@ print(dfRateLossAAC)
 
                                                         resultado
     Taxas perdas em acurácia e acurácia por validaç...   -0.01236
-    
+
 
 
 ```python
@@ -1586,7 +1570,7 @@ Image(graph.create_png())
 
     c:\users\jorge\appdata\local\programs\python\python37-32\lib\site-packages\sklearn\externals\six.py:31: DeprecationWarning: The module is deprecated in version 0.21 and will be removed in version 0.23 since we've dropped support for Python 2.7. Please rely on the official version of six (https://pypi.org/project/six/).
       "(https://pypi.org/project/six/).", DeprecationWarning)
-    
+
 
 
 
@@ -1636,7 +1620,7 @@ dftreinoteste
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1672,7 +1656,6 @@ print(X_train_norm.shape , X_test_norm.shape)
 ```
 
     (2217, 20) (951, 20)
-    
 
 ---
 ---
@@ -1760,7 +1743,7 @@ rconfusion_matrix_lda
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1801,7 +1784,7 @@ print(rconfusion_matrix_lda)
                Previsão dos negativos  Previsão dos positivos  Total
     Negativos                     484                      10    494
     Positivos                      22                     435    457
-    
+
 
 
 ```python
@@ -1814,7 +1797,6 @@ plt.show()
 
 
 ![png](output_141_0.png)
-
 
 ---
 
@@ -1848,7 +1830,7 @@ dfRAccuracy
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1878,7 +1860,7 @@ print(dfRAccuracy)
 
               resultado
     Accuracy   0.966351
-    
+
 
 ### Curva ROC
 
@@ -1910,7 +1892,7 @@ rAuc=roc_auc_score(y_test, yr_pred_prob)
 ```
 
     0.9930788720665491
-    
+
 
 
 ```python
@@ -1930,7 +1912,7 @@ dfrAuc
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1960,7 +1942,6 @@ print(dfrAuc)
 
          resultado
     AUC   0.993079
-    
 
 ---
 ### Precisão Geral (Accuracy_cross) por validação cruzada.
@@ -1972,7 +1953,7 @@ print(Raccuracy_cross)
 ```
 
     0.9533197993790303
-    
+
 
 
 ```python
@@ -1992,7 +1973,7 @@ dfRaccuracy_cross
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -2022,7 +2003,6 @@ print(dfRaccuracy_cross)
 
                                     resultado
     Acurácia por validação cruzada    0.95332
-    
 
 ---
 ### Taxa entre as Accuracy e Accuracy_cross.
@@ -2037,7 +2017,7 @@ RRateLossAAC = (RAccuracy - Raccuracy_cross)/ RAccuracy * Raccuracy_cross * 100
 ```
 
     1.285567910312283
-    
+
 
 
 ```python
@@ -2057,7 +2037,7 @@ dfRRateLossAAC
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -2087,7 +2067,7 @@ print(dfRRateLossAAC)
 
                                                         resultado
     Taxas perdas em acurácia e acurácia por validaç...   1.285568
-    
+
 
 
 ```python
@@ -2143,7 +2123,7 @@ df.plot(kind='bar',figsize=(15,8))
 ![png](output_166_1.png)
 
 
-### Acurácia e área da curva da ROC entre modelos de regressão logística e  regressão logística com redução de dimensionabilidade.
+### Acurácia e área da curva da ROC entre modelos de regressão.
 
 
 ```python
@@ -2219,7 +2199,7 @@ print(test_dict)
     {'RAccuracy': 0.9663512092534174, 'Accuracy': 0.9516298633017876, 'accuracy_cross': 0.9517534431971978, 'Raccuracy_cross': 0.9533197993790303, 'Auc': 0.9508190185951327, 'rAuc': 0.9930788720665491, 'rfpr': array([0.        , 0.        , 0.01012146, 0.01012146, 0.02024291,
            0.05668016, 0.09109312, 0.18218623, 1.        ]), 'rtpr': array([0.        , 0.64770241, 0.87089716, 0.94310722, 0.95185996,
            0.96061269, 0.98905908, 0.99781182, 1.        ]), 'fpr': array([0.        , 0.02834008, 1.        ]), 'tpr': array([0.        , 0.92997812, 1.        ])}
-    
+
 
 
 ```python
@@ -2227,18 +2207,17 @@ print(type(test_dict))
 ```
 
     <class 'dict'>
-    
 
-
-```python
-
-```
 
 
 ```python
 
 ```
 
+
+```python
+
+```
 
 
 

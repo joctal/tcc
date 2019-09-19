@@ -14471,7 +14471,7 @@ Positivos                      68                     389    457
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">TP</span> <span class="o">=</span> <span class="n">confusion_matrix_lda</span><span class="p">[</span><span class="s1">&#39;Previsão dos positivos&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">dfTP</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">TP</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Negativos verdadeiros&#39;</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Quantidade acertos&#39;</span><span class="p">]</span> <span class="p">)</span>
+<span class="n">dfTP</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">TP</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Positivo verdadeiros&#39;</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Quantidade acertos&#39;</span><span class="p">]</span> <span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14525,7 +14525,7 @@ Positivos                      68                     389    457
   </thead>
   <tbody>
     <tr>
-      <td>Negativos verdadeiros</td>
+      <td>Positivo verdadeiros</td>
       <td>389</td>
     </tr>
   </tbody>
@@ -14562,7 +14562,7 @@ Positivos                      68                     389    457
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>                       Quantidade acertos
-Negativos verdadeiros                 389
+Positivo verdadeiros                 389
 </pre>
 </div>
 </div>
@@ -14586,7 +14586,7 @@ Negativos verdadeiros                 389
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">TN</span> <span class="o">=</span> <span class="n">confusion_matrix_lda</span><span class="p">[</span><span class="s1">&#39;Previsão dos negativos&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">dfTN</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">TN</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Falso Negativo&#39;</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Quantidade acertos&#39;</span><span class="p">]</span> <span class="p">)</span>
+<span class="n">dfTN</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">TN</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Negativo verdadeiro&#39;</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Quantidade acertos&#39;</span><span class="p">]</span> <span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14640,7 +14640,7 @@ Negativos verdadeiros                 389
   </thead>
   <tbody>
     <tr>
-      <td>Falso Negativo</td>
+      <td>Negativo verdadeiro</td>
       <td>477</td>
     </tr>
   </tbody>
@@ -14677,7 +14677,7 @@ Negativos verdadeiros                 389
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>                Quantidade acertos
-Falso Negativo                 477
+Negativo verdadeiro                 477
 </pre>
 </div>
 </div>
@@ -14816,7 +14816,7 @@ Falso Positivo                  17
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">FN</span> <span class="o">=</span> <span class="n">confusion_matrix_lda</span><span class="p">[</span><span class="s1">&#39;Previsão dos negativos&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">dfFN</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">FN</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Negativos verdadeiros&#39;</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Quantidade acertos&#39;</span><span class="p">]</span> <span class="p">)</span>
+<span class="n">dfFN</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">FN</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Falso Negativos&#39;</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Quantidade acertos&#39;</span><span class="p">]</span> <span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14870,7 +14870,7 @@ Falso Positivo                  17
   </thead>
   <tbody>
     <tr>
-      <td>Negativos verdadeiros</td>
+      <td>Falso Negativos</td>
       <td>68</td>
     </tr>
   </tbody>
@@ -14907,7 +14907,7 @@ Falso Positivo                  17
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>                       Quantidade acertos
-Negativos verdadeiros                  68
+Falso Negativos                  68
 </pre>
 </div>
 </div>
