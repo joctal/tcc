@@ -1174,34 +1174,34 @@ plt.show()
 ```python
 dataset.dtypes
 A = str(tipos)
-A = A.replace('float64',"Qualitativa Nominal")
-A = A.replace('object',"Quantitativa Contínua")
+A = A.replace('float64',"Quantitativa Contínua")
+A = A.replace('object',"Qualitativa Nominal")
 
 print(A)
 ```
 
-    meanfreq    Qualitativa Nominal
-    sd          Qualitativa Nominal
-    median      Qualitativa Nominal
-    Q25         Qualitativa Nominal
-    Q75         Qualitativa Nominal
-    IQR         Qualitativa Nominal
-    skew        Qualitativa Nominal
-    kurt        Qualitativa Nominal
-    sp.ent      Qualitativa Nominal
-    sfm         Qualitativa Nominal
-    mode        Qualitativa Nominal
-    centroid    Qualitativa Nominal
-    meanfun     Qualitativa Nominal
-    minfun      Qualitativa Nominal
-    maxfun      Qualitativa Nominal
-    meandom     Qualitativa Nominal
-    mindom      Qualitativa Nominal
-    maxdom      Qualitativa Nominal
-    dfrange     Qualitativa Nominal
-    modindx     Qualitativa Nominal
-    label        Quantitativa Contínua
-    dtype: Quantitativa Contínua
+    meanfreq    Quantitativa Contínua
+    sd          Quantitativa Contínua
+    median      Quantitativa Contínua
+    Q25         Quantitativa Contínua
+    Q75         Quantitativa Contínua
+    IQR         Quantitativa Contínua
+    skew        Quantitativa Contínua
+    kurt        Quantitativa Contínua
+    sp.ent      Quantitativa Contínua
+    sfm         Quantitativa Contínua
+    mode        Quantitativa Contínua
+    centroid    Quantitativa Contínua
+    meanfun     Quantitativa Contínua
+    minfun      Quantitativa Contínua
+    maxfun      Quantitativa Contínua
+    meandom     Quantitativa Contínua
+    mindom      Quantitativa Contínua
+    maxdom      Quantitativa Contínua
+    dfrange     Quantitativa Contínua
+    modindx     Quantitativa Contínua
+    label        Qualitativa Nominal
+    dtype: Qualitativa Nominal
 
 
 # Medidas Resumo Variáveis Quantitativas:
