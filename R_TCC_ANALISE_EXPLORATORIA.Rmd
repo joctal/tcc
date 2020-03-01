@@ -1,13 +1,12 @@
 ---
 title: "TCC R  Notebook"
 output:
-  pdf_document: default
   html_notebook: default
+  pdf_document: default
 ---
-# Analise exploratória.
+# Analise exploratória: Continuação.
 ### Introdução.
-Este Jupyter Notebook investiga a base de dados de  propriedades acústicas disponível no site  http://www.primaryobjects.com/2016/06/22/identifying-the-gender-of-a-voice-using-machine-learning/   
-Objetivo da investigação é determinar as chances de algum algoritmo para detecção de gênero, seja por estatística tradicional ou por meio técnicas machine learning e redes neurais, possibilitando a implantação em dispositivos embarcados de baixo custo de memoria e processamento restrito, para utilização de mídias inteligentes e interativas em lojas em moda.  
+Este  *notebook* investiga a base de dados de  propriedades acústicas *Rvoice_fix.csv*, derivada da primeira parte deste estudo. 
 
 
 
@@ -30,7 +29,7 @@ library(Amelia)
 library(corrplot)
 library(caret)
 
-datasetvoice = read.csv("C:\\Users\\jorge\\Desktop\\TCC\\00-PRATICA\\04-Resultados TCC\\baseDados\\Tvoice.csv",sep=',',header=T)
+datasetvoice2 = read.csv("C:\\Users\\jorge\\Desktop\\TCC\\tcc_to_git\\tcc\\baseDados\\Rvoice_fix.csv",sep=',',header=T)
 
 #==================================================
 # Mostrar dados
@@ -48,6 +47,9 @@ Verificando alguns dados.
 
 
 ```{r}
+#datasetvoice2$X <- NULL
+datasetvoice = datasetvoice2
+
 head(datasetvoice, n=10)
 
 ```
@@ -98,6 +100,7 @@ print(skew)
 Correlação.
 
 ```{r}
+
 correlacao <- cor(datasetvoice[,1:20])
 print(correlacao)
 ```
@@ -167,13 +170,6 @@ corrplot(correlacao, add=TRUE, type="lower", method="number", order="AOE", col="
 ```
 
 
-Gráfico de dispersão (multivariado).
-
-
-```{r fig.width = 15, fig.height = 15}
-pairs(datasetvoice)
-```
-
 
 Gráfico de dispersão por classe (multivariado).
 
@@ -195,6 +191,9 @@ Boxplot por classe (multivariado)
 ```{r fig.width = 15, fig.height = 10}
 x <- datasetvoice[,1:20]
 y <- datasetvoice[,21]
+
+
+
 featurePlot(x=x, y=y, plot="box")
 ```
 
