@@ -35,4 +35,10 @@ http://www.primaryobjects.com/2016/06/22/identifying-the-gender-of-a-voice-using
 ### TCC_CART.html   (resultados em html com as imagens)
 
 
+# Análise do modelo:  Modelos machine learning.
 
+## [Os 3 Modelos de ML on-line](https://github.com/joctal/tcc/blob/master/TCC_Outros_modelos/README.md)
+
+### TCC_Outros_modelos.ipynb (arquivo jupyter)
+### TCC_Outros_modelos.pdf   (resultados em pdf)
+### TCC_Outros_modelos.html   (resultados em html com as imagens)
