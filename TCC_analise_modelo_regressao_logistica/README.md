@@ -1,5 +1,5 @@
 
-# Avaliação do Modelo de Classificação.
+# MODELO 1 - Avaliação do Modelo de Classificação.
 ### Introdução.
 ##### Este  Notebook é destina a avaliação do modelo de regressão logística e separação do das  no arquivo voice_fix.csv
 
@@ -318,6 +318,10 @@ print(df_pre.head().transpose())
 ## Separação dos dados pela classe label, vozes de homens e mulheres.
 df_male = df_pre[df_pre["label"] == "male"]
 df_female = df_pre[df_pre["label"] == "female"]
+
+
+
+
 ```
 
 
@@ -395,6 +399,9 @@ Y_entrada_female = df_female['genero']
 ```python
 print(X_entrada_female.head().transpose())
 
+feature_cols=X_entrada_female.columns
+feature_cols
+
 ```
 
                   1584      1585       1586       1587      1588
@@ -420,6 +427,16 @@ print(X_entrada_female.head().transpose())
     modindx   0.133931  0.129735   0.133931   0.133931  0.129735
     int       1.000000  1.000000   1.000000   1.000000  1.000000
     
+
+
+
+
+    Index(['meanfreq', 'sd', 'median', 'Q25', 'Q75', 'IQR', 'skew', 'kurt',
+           'sp.ent', 'sfm', 'mode', 'centroid', 'meanfun', 'minfun', 'maxfun',
+           'meandom', 'mindom', 'maxdom', 'dfrange', 'modindx', 'int'],
+          dtype='object')
+
+
 
 
 ```python
@@ -739,6 +756,7 @@ dic_base_treino_test['X_train_norm'] = X_train_norm
 
 ```python
 dic_base_treino_test['X_test_norm'] = X_test_norm
+dic_base_treino_test['feature_cols'] =  feature_cols
 ```
 
 ### Salva dados para avaliação dos modelo
@@ -867,7 +885,7 @@ y_pred=classifier.predict(X_test)
 
 ---
 
-# Modelo de avaliação de métricas.
+# 12) Modelo de avaliação de métricas.
 
 ##  16)  Classificação
 
@@ -1629,7 +1647,7 @@ print(dfF1Score)
     
 
 ---
-### Curva ROC
+### 13) Curva ROC
 Uma curva ROC é uma forma comumente usada para visualizar o desempenho de um classificador binário, significando um classificador com duas classes de saída possíveis. A curva plota a Taxa Positiva Real (Recall) contra a Taxa Falsa Positiva (também interpretada como Especificidade 1).
 
 
@@ -1759,7 +1777,7 @@ import pickle
 
 
 ```python
-filename = 'regressaologitica.jss'
+filename = '.\\baseDados\\regressaologitica.jss'
 outfile = open(filename,'wb')
 pickle.dump(dic_logist,outfile)
 outfile.close()

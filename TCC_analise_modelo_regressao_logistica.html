@@ -13116,7 +13116,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Avalia&#231;&#227;o-do-Modelo-de-Classifica&#231;&#227;o.">Avalia&#231;&#227;o do Modelo de Classifica&#231;&#227;o.<a class="anchor-link" href="#Avalia&#231;&#227;o-do-Modelo-de-Classifica&#231;&#227;o.">&#182;</a></h1><h3 id="Introdu&#231;&#227;o.">Introdu&#231;&#227;o.<a class="anchor-link" href="#Introdu&#231;&#227;o.">&#182;</a></h3><h5 id="Este--Notebook-&#233;-destina-a-avalia&#231;&#227;o-do-modelo-de-regress&#227;o-log&#237;stica-e-separa&#231;&#227;o-do-das--no-arquivo-voice_fix.csv">Este  Notebook &#233; destina a avalia&#231;&#227;o do modelo de regress&#227;o log&#237;stica e separa&#231;&#227;o do das  no arquivo voice_fix.csv<a class="anchor-link" href="#Este--Notebook-&#233;-destina-a-avalia&#231;&#227;o-do-modelo-de-regress&#227;o-log&#237;stica-e-separa&#231;&#227;o-do-das--no-arquivo-voice_fix.csv">&#182;</a></h5>
+<h1 id="MODELO-1---Avalia&#231;&#227;o-do-Modelo-de-Classifica&#231;&#227;o.">MODELO 1 - Avalia&#231;&#227;o do Modelo de Classifica&#231;&#227;o.<a class="anchor-link" href="#MODELO-1---Avalia&#231;&#227;o-do-Modelo-de-Classifica&#231;&#227;o.">&#182;</a></h1><h3 id="Introdu&#231;&#227;o.">Introdu&#231;&#227;o.<a class="anchor-link" href="#Introdu&#231;&#227;o.">&#182;</a></h3><h5 id="Este--Notebook-&#233;-destina-a-avalia&#231;&#227;o-do-modelo-de-regress&#227;o-log&#237;stica-e-separa&#231;&#227;o-do-das--no-arquivo-voice_fix.csv">Este  Notebook &#233; destina a avalia&#231;&#227;o do modelo de regress&#227;o log&#237;stica e separa&#231;&#227;o do das  no arquivo voice_fix.csv<a class="anchor-link" href="#Este--Notebook-&#233;-destina-a-avalia&#231;&#227;o-do-modelo-de-regress&#227;o-log&#237;stica-e-separa&#231;&#227;o-do-das--no-arquivo-voice_fix.csv">&#182;</a></h5>
 </div>
 </div>
 </div>
@@ -13842,6 +13842,9 @@ int               1          1          1          1          1
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X_entrada_female</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">transpose</span><span class="p">())</span>
+
+<span class="n">feature_cols</span><span class="o">=</span><span class="n">X_entrada_female</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">feature_cols</span>
 </pre></div>
 
     </div>
@@ -13882,6 +13885,22 @@ modindx   0.133931  0.129735   0.133931   0.133931  0.129735
 int       1.000000  1.000000   1.000000   1.000000  1.000000
 </pre>
 </div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[19]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([&#39;meanfreq&#39;, &#39;sd&#39;, &#39;median&#39;, &#39;Q25&#39;, &#39;Q75&#39;, &#39;IQR&#39;, &#39;skew&#39;, &#39;kurt&#39;,
+       &#39;sp.ent&#39;, &#39;sfm&#39;, &#39;mode&#39;, &#39;centroid&#39;, &#39;meanfun&#39;, &#39;minfun&#39;, &#39;maxfun&#39;,
+       &#39;meandom&#39;, &#39;mindom&#39;, &#39;maxdom&#39;, &#39;dfrange&#39;, &#39;modindx&#39;, &#39;int&#39;],
+      dtype=&#39;object&#39;)</pre>
+</div>
+
 </div>
 
 </div>
@@ -14608,6 +14627,7 @@ dtype: int64
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dic_base_treino_test</span><span class="p">[</span><span class="s1">&#39;X_test_norm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_test_norm</span>
+<span class="n">dic_base_treino_test</span><span class="p">[</span><span class="s1">&#39;feature_cols&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">feature_cols</span>
 </pre></div>
 
     </div>
@@ -14921,7 +14941,7 @@ dtype: int64
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<h1 id="Modelo-de-avalia&#231;&#227;o-de-m&#233;tricas.">Modelo de avalia&#231;&#227;o de m&#233;tricas.<a class="anchor-link" href="#Modelo-de-avalia&#231;&#227;o-de-m&#233;tricas.">&#182;</a></h1>
+<h1 id="12)-Modelo-de-avalia&#231;&#227;o-de-m&#233;tricas.">12) Modelo de avalia&#231;&#227;o de m&#233;tricas.<a class="anchor-link" href="#12)-Modelo-de-avalia&#231;&#227;o-de-m&#233;tricas.">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -16388,7 +16408,7 @@ F1 Score   2.426471
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<h3 id="Curva-ROC">Curva ROC<a class="anchor-link" href="#Curva-ROC">&#182;</a></h3><p>Uma curva ROC é uma forma comumente usada para visualizar o desempenho de um classificador binário, significando um classificador com duas classes de saída possíveis. A curva plota a Taxa Positiva Real (Recall) contra a Taxa Falsa Positiva (também interpretada como Especificidade 1).</p>
+<h3 id="13)-Curva-ROC">13) Curva ROC<a class="anchor-link" href="#13)-Curva-ROC">&#182;</a></h3><p>Uma curva ROC é uma forma comumente usada para visualizar o desempenho de um classificador binário, significando um classificador com duas classes de saída possíveis. A curva plota a Taxa Positiva Real (Recall) contra a Taxa Falsa Positiva (também interpretada como Especificidade 1).</p>
 
 </div>
 </div>
@@ -16682,7 +16702,7 @@ AUC   0.873182
 <div class="prompt input_prompt">In&nbsp;[109]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;regressaologitica.jss&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;.</span><span class="se">\\</span><span class="s1">baseDados</span><span class="se">\\</span><span class="s1">regressaologitica.jss&#39;</span>
 <span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span>
 <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">dic_logist</span><span class="p">,</span><span class="n">outfile</span><span class="p">)</span>
 <span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
