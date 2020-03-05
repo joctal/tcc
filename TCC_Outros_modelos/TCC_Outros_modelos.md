@@ -1,5 +1,5 @@
 
-# MODELO 3 - Avaliação dos Modelos de Marchine Learning.
+# MODELO 3 - Avaliação dos Modelos de marchine learning.
 
 
 
@@ -38,7 +38,7 @@ from sklearn import metrics #Import scikit-learn metrics module for accuracy cal
 
 ```
 
-#  1) Carregando dados de treino e teste para avalição do modelo
+#  1) Carregando os dados de treino e teste para avalição do modelo
 
 
 ```python
@@ -162,10 +162,11 @@ rf_accuracy_testdata = metrics.accuracy_score(y_test, rf_pred)
 #print accuracy
 print ("Accuracy: {0:.4f}".format(rf_accuracy_testdata))
 RF_Accuracy = metrics.accuracy_score(y_test, rf_pred)
-
+print(RF_Accuracy)
 ```
 
     Accuracy: 0.8918
+    0.8918067226890757
     
 
 ### Matriz de confusão: Random Forest
@@ -192,6 +193,7 @@ plt.show()
 
 ```python
 print ("{0}".format(metrics.classification_report(y_test, rf_pred, labels=[0, 1])))
+
 ```
 
                   precision    recall  f1-score   support
@@ -204,6 +206,185 @@ print ("{0}".format(metrics.classification_report(y_test, rf_pred, labels=[0, 1]
     weighted avg       0.90      0.89      0.89       952
     
     
+
+
+```python
+cm=confusion_matrix(y_test,rf_pred)
+confusion_matrix_lda = pandas.DataFrame(cm, index = ['Negativos','Positivos'], columns = ['Previsão dos negativos','Previsão dos positivos'] )
+confusion_matrix_lda['Total'] = 1
+confusion_matrix_lda['Total'][0] = cm[0][0] + cm[0][1]
+confusion_matrix_lda['Total'][1] = cm[1][0] + cm[1][1]
+```
+
+
+```python
+confusion_matrix_lda
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Previsão dos negativos</th>
+      <th>Previsão dos positivos</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Negativos</td>
+      <td>449</td>
+      <td>27</td>
+      <td>476</td>
+    </tr>
+    <tr>
+      <td>Positivos</td>
+      <td>76</td>
+      <td>400</td>
+      <td>476</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+print(confusion_matrix_lda)
+```
+
+               Previsão dos negativos  Previsão dos positivos  Total
+    Negativos                     449                      27    476
+    Positivos                      76                     400    476
+    
+
+
+```python
+TP = confusion_matrix_lda['Previsão dos positivos'][1]
+dfTP = pandas.DataFrame(TP, index = ['Positivos verdadeiros'], columns = ['Quantidade acertos'] )
+```
+
+
+```python
+TN = confusion_matrix_lda['Previsão dos negativos'][0]
+dfTN = pandas.DataFrame(TN, index = ['Verdadeiro Negativo'], columns = ['Quantidade acertos'] )
+```
+
+
+```python
+FP = confusion_matrix_lda['Previsão dos positivos'][0]
+dfFP = pandas.DataFrame(FP, index = ['Falso Positivo'], columns = ['Quantidade acertos'] )
+```
+
+
+```python
+FN = confusion_matrix_lda['Previsão dos negativos'][1]
+dfFN = pandas.DataFrame(FN, index = ['Negativos Falsos'], columns = ['Quantidade acertos'] )
+```
+
+
+```python
+rfSpecificity = TN / float(TN + FP)
+dfSpecificity = pandas.DataFrame(rfSpecificity, index = ['Specificity'], columns = ['resultado'] )
+```
+
+
+```python
+dfSpecificity
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>resultado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Specificity</td>
+      <td>0.943277</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+rfRecall= recall_score(y_test, rf_pred)
+print(rfRecall)
+```
+
+    0.8403361344537815
+    
+
+
+```python
+print(TP / float(TP + FP))
+print(precision_score(y_test, rf_pred))
+rfPrecision = precision_score(y_test, rf_pred)
+```
+
+    0.936768149882904
+    0.936768149882904
+    
+
+
+```python
+rfF1Score = 2 * rfPrecision *  rfRecall /  float(rfPrecision + rfRecall)
+print(rfF1Score)
+
+```
+
+    0.8859357696566998
+    
+
+
+```python
+
+```
+
+
+```python
+
+```
 
 ---
 ###  Curva ROC: Random Forest
@@ -237,7 +418,7 @@ plot_roc_curve(rf_fpr, rf_tpr,'Random Forest')
 ```
 
 
-![png](output_29_0.png)
+![png](output_43_0.png)
 
 
 ---
@@ -310,7 +491,7 @@ print(dfAuc)
 ---
 ---
 
-# 3) carregando o modelo  Máquina de vetores de suporte SVM
+# Carregando o modelo  Máquina de vetores de suporte SVM
 
 
 ```python
@@ -365,17 +546,130 @@ svm_accuracy_testdata = accuracy_score(y_train, svm_pred)
 
 
 ```python
+cm=confusion_matrix(y_train, svm_model.predict(X_train))
+```
+
+
+```python
+confusion_matrix_lda = pandas.DataFrame(cm, index = ['Negativos','Positivos'], columns = ['Previsão dos negativos','Previsão dos positivos'] )
+confusion_matrix_lda['Total'] = 1
+confusion_matrix_lda['Total'][0] = cm[0][0] + cm[0][1]
+confusion_matrix_lda['Total'][1] = cm[1][0] + cm[1][1]
+```
+
+
+```python
+confusion_matrix_lda
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Previsão dos negativos</th>
+      <th>Previsão dos positivos</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Negativos</td>
+      <td>1105</td>
+      <td>3</td>
+      <td>1108</td>
+    </tr>
+    <tr>
+      <td>Positivos</td>
+      <td>22</td>
+      <td>1086</td>
+      <td>1108</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+TP = confusion_matrix_lda['Previsão dos positivos'][1]
+dfTP = pandas.DataFrame(TP, index = ['Positivos verdadeiros'], columns = ['Quantidade acertos'] )
+TP
+```
+
+
+
+
+    1086
+
+
+
+
+```python
+TN = confusion_matrix_lda['Previsão dos negativos'][0]
+dfTN = pandas.DataFrame(TN, index = ['Verdadeiro Negativo'], columns = ['Quantidade acertos'] )
+TN
+```
+
+
+
+
+    1105
+
+
+
+
+```python
+FP = confusion_matrix_lda['Previsão dos positivos'][0]
+dfFP = pandas.DataFrame(FP, index = ['Falso Positivo'], columns = ['Quantidade acertos'] )
+FP
+```
+
+
+
+
+    3
+
+
+
+
+```python
+FN = confusion_matrix_lda['Previsão dos negativos'][1]
+dfFN = pandas.DataFrame(FN, index = ['Negativos Falsos'], columns = ['Quantidade acertos'] )
+FN
+```
+
+
+
+
+    22
+
+
+
+
+```python
 print(f"accuracy score: {accuracy_score(y_train, svm_pred):.4f}\n")
-
-print(f"Confusion Matrix: \n {confusion_matrix(y_train, svm_model.predict(X_train))}\n")
-
+svmAccuracy = accuracy_score(y_train, svm_pred)
 ```
 
     accuracy score: 0.9887
-    
-    Confusion Matrix: 
-     [[1105    3]
-     [  22 1086]]
     
     
 
@@ -391,7 +685,7 @@ plt.show()
 ```
 
 
-![png](output_45_0.png)
+![png](output_66_0.png)
 
 
 ### Metricas Report: svm
@@ -408,6 +702,35 @@ print(f"Classification Report: \n \tPrecision: {precision_score(y_train, svm_pre
     	F1 score: 0.9886208466090123
     
     
+
+
+```python
+svmPrecision = precision_score(y_train, svm_pred)
+```
+
+
+```python
+svmRecall = recall_score(y_train, svm_pred)
+```
+
+
+```python
+svmF1_score = f1_score(y_train, svm_pred)
+```
+
+
+```python
+svmSpecificity = TN / float(TN + FP)
+dfSpecificity = pandas.DataFrame(svmSpecificity, index = ['Specificity'], columns = ['resultado'] )
+svmSpecificity
+```
+
+
+
+
+    0.9972924187725631
+
+
 
 ---
 ###  Curva ROC: SVM
@@ -430,7 +753,7 @@ plot_roc_curve(svm_fpr, svm_tpr,'SVM')
 ```
 
 
-![png](output_51_0.png)
+![png](output_76_0.png)
 
 
 ---
@@ -453,7 +776,7 @@ SVM_Auc=roc_auc_score(y_test, svm_pred_prob)
 ---
 ---
 
-# 4) carregando o modelo  Máquina de Naive Bayes
+# Carregando o modelo  Máquina de Naive Bayes
 
 
 ```python
@@ -479,7 +802,7 @@ nb_model.fit(X_train, y_train)
 
 
 ```python
-nb_pred = svm_model.predict(X_train)
+nb_pred = nb_model.predict(X_train)
 ```
 
 ##  Modelo de avaliação de métricas. NB.
@@ -493,7 +816,7 @@ print(f"accuracy score: {accuracy_score(y_train, nb_pred):.4f}\n")
 nb_accuracy_testdata = accuracy_score(y_train, nb_pred)
 ```
 
-    accuracy score: 0.9887
+    accuracy score: 0.9057
     
     
 
@@ -501,14 +824,58 @@ nb_accuracy_testdata = accuracy_score(y_train, nb_pred)
 
 
 ```python
-print(f"Confusion Matrix: \n {confusion_matrix(y_train, nb_model.predict(X_train))}\n")
+cm=confusion_matrix(y_train, nb_model.predict(X_train))
+confusion_matrix_lda = pandas.DataFrame(cm, index = ['Negativos','Positivos'], columns = ['Previsão dos negativos','Previsão dos positivos'] )
+confusion_matrix_lda['Total'] = 1
+confusion_matrix_lda['Total'][0] = cm[0][0] + cm[0][1]
+confusion_matrix_lda['Total'][1] = cm[1][0] + cm[1][1]
+confusion_matrix_lda
 ```
 
-    Confusion Matrix: 
-     [[1011   97]
-     [ 112  996]]
-    
-    
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Previsão dos negativos</th>
+      <th>Previsão dos positivos</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Negativos</td>
+      <td>1011</td>
+      <td>97</td>
+      <td>1108</td>
+    </tr>
+    <tr>
+      <td>Positivos</td>
+      <td>112</td>
+      <td>996</td>
+      <td>1108</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 
 ```python
@@ -522,7 +889,7 @@ plt.show()
 ```
 
 
-![png](output_65_0.png)
+![png](output_90_0.png)
 
 
 ### Metricas Report: NB.
@@ -534,11 +901,106 @@ print(f"Classification Report: \n \tPrecision: {precision_score(y_train, nb_pred
 ```
 
     Classification Report: 
-     	Precision: 0.9972451790633609
-    	Recall Score: 0.98014440433213
-    	F1 score: 0.9886208466090123
+     	Precision: 0.9112534309240622
+    	Recall Score: 0.8989169675090253
+    	F1 score: 0.9050431621990005
     
     
+
+
+```python
+TP = confusion_matrix_lda['Previsão dos positivos'][1]
+dfTP = pandas.DataFrame(TP, index = ['Positivos verdadeiros'], columns = ['Quantidade acertos'] )
+TP
+```
+
+
+
+
+    996
+
+
+
+
+```python
+TN = confusion_matrix_lda['Previsão dos negativos'][0]
+dfTN = pandas.DataFrame(TN, index = ['Verdadeiro Negativo'], columns = ['Quantidade acertos'] )
+TN
+```
+
+
+
+
+    1011
+
+
+
+
+```python
+FP = confusion_matrix_lda['Previsão dos positivos'][0]
+dfFP = pandas.DataFrame(FP, index = ['Falso Positivo'], columns = ['Quantidade acertos'] )
+FP
+```
+
+
+
+
+    97
+
+
+
+
+```python
+FN = confusion_matrix_lda['Previsão dos negativos'][1]
+dfFN = pandas.DataFrame(FN, index = ['Negativos Falsos'], columns = ['Quantidade acertos'] )
+FN
+```
+
+
+
+
+    112
+
+
+
+
+```python
+print(f"accuracy score: {accuracy_score(y_train, nb_pred):.4f}\n")
+nbAccuracy = accuracy_score(y_train, nb_pred)
+```
+
+    accuracy score: 0.9057
+    
+    
+
+
+```python
+nbPrecision = precision_score(y_train, nb_pred)
+```
+
+
+```python
+nbRecall = recall_score(y_train, nb_pred)
+```
+
+
+```python
+nbF1_score = f1_score(y_train, nb_pred)
+```
+
+
+```python
+nbSpecificity = TN / float(TN + FP)
+dfSpecificity = pandas.DataFrame(nbSpecificity, index = ['Specificity'], columns = ['resultado'] )
+nbSpecificity
+```
+
+
+
+
+    0.9124548736462094
+
+
 
 ---
 ###  Curva ROC: NB.
@@ -559,7 +1021,7 @@ plot_roc_curve(nb_fpr, nb_tpr,'Naive Bayes')
 ```
 
 
-![png](output_71_0.png)
+![png](output_105_0.png)
 
 
 ###  AUC (área sob a curva) da Curva ROC : NB.
@@ -602,8 +1064,13 @@ filename = '.\\baseDados\\cart.jss'
 infile = open(filename,'rb')
 cart_dict = pickle.load(infile)
 infile.close()
-CART_auc= cart_dict['RF_Auc']
-CART_pred_prob= cart_dict['rf_pred_prob']
+CART_auc= cart_dict['Auc']
+CART_pred_prob= cart_dict['y_pred_prob']
+```
+
+
+```python
+#print(cart_dict)
 ```
 
 
@@ -666,7 +1133,7 @@ plt.close()
 ```
 
 
-![png](output_84_0.png)
+![png](output_119_0.png)
 
 
 
@@ -676,6 +1143,681 @@ plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 
 
     <Figure size 864x432 with 0 Axes>
+
+
+# Comparando as métricas dos modelos Acurácia, Precisão e AUC.
+
+
+```python
+#print(cart_dict)
+
+
+```
+
+
+```python
+dfresultado=pd.DataFrame.from_dict(dict([('Regressão Logística',[rlog_dict['Accuracy'], 
+                                                     rlog_dict['Precision'], 
+                                                     rlog_dict['Specificity'],
+                                                     rlog_dict['F1Score'],
+                                                     rlog_dict['Recall'],
+                                                     rlog_dict['Auc']]),
+                            ('Arvore de decisão',[cart_dict['Accuracy'], 
+                                                     cart_dict['Precision'], 
+                                                     cart_dict['Specificity'],
+                                                     cart_dict['F1Score'],
+                                                     cart_dict['Recall'],
+                                                     cart_dict['Auc']]),
+                            ('Random Forest', [RF_Accuracy, rfPrecision, rfSpecificity,rfF1Score,rfRecall,RF_Auc]),
+                            ('SVM', [svmAccuracy, svmPrecision, svmSpecificity,svmF1_score,svmRecall,SVM_Auc]),
+                            ('Naive Bayes', [nb_accuracy_testdata, nbPrecision, nbSpecificity,nbF1_score,nbRecall,NB_Auc])]),                   
+                            orient='index', columns=['Accuracy', 'Precision', 'Specificity', 'F1Score', 'Recall','AUC'])
+```
+
+
+```python
+dfresultado
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Accuracy</th>
+      <th>Precision</th>
+      <th>Specificity</th>
+      <th>F1Score</th>
+      <th>Recall</th>
+      <th>AUC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Regressão Logística</td>
+      <td>0.830882</td>
+      <td>0.846154</td>
+      <td>0.852941</td>
+      <td>0.827068</td>
+      <td>0.808824</td>
+      <td>0.873182</td>
+    </tr>
+    <tr>
+      <td>Arvore de decisão</td>
+      <td>0.987395</td>
+      <td>0.995726</td>
+      <td>0.995798</td>
+      <td>0.987288</td>
+      <td>0.978992</td>
+      <td>0.987395</td>
+    </tr>
+    <tr>
+      <td>Random Forest</td>
+      <td>0.891807</td>
+      <td>0.936768</td>
+      <td>0.943277</td>
+      <td>0.885936</td>
+      <td>0.840336</td>
+      <td>0.978577</td>
+    </tr>
+    <tr>
+      <td>SVM</td>
+      <td>0.988718</td>
+      <td>0.997245</td>
+      <td>0.997292</td>
+      <td>0.988621</td>
+      <td>0.980144</td>
+      <td>0.998177</td>
+    </tr>
+    <tr>
+      <td>Naive Bayes</td>
+      <td>0.905686</td>
+      <td>0.911253</td>
+      <td>0.912455</td>
+      <td>0.905043</td>
+      <td>0.898917</td>
+      <td>0.959952</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+dfresultado.describe()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Accuracy</th>
+      <th>Precision</th>
+      <th>Specificity</th>
+      <th>F1Score</th>
+      <th>Recall</th>
+      <th>AUC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>count</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+    </tr>
+    <tr>
+      <td>mean</td>
+      <td>0.920898</td>
+      <td>0.937429</td>
+      <td>0.940353</td>
+      <td>0.918791</td>
+      <td>0.901443</td>
+      <td>0.959456</td>
+    </tr>
+    <tr>
+      <td>std</td>
+      <td>0.067457</td>
+      <td>0.063232</td>
+      <td>0.060712</td>
+      <td>0.069372</td>
+      <td>0.078305</td>
+      <td>0.050222</td>
+    </tr>
+    <tr>
+      <td>min</td>
+      <td>0.830882</td>
+      <td>0.846154</td>
+      <td>0.852941</td>
+      <td>0.827068</td>
+      <td>0.808824</td>
+      <td>0.873182</td>
+    </tr>
+    <tr>
+      <td>25%</td>
+      <td>0.891807</td>
+      <td>0.911253</td>
+      <td>0.912455</td>
+      <td>0.885936</td>
+      <td>0.840336</td>
+      <td>0.959952</td>
+    </tr>
+    <tr>
+      <td>50%</td>
+      <td>0.905686</td>
+      <td>0.936768</td>
+      <td>0.943277</td>
+      <td>0.905043</td>
+      <td>0.898917</td>
+      <td>0.978577</td>
+    </tr>
+    <tr>
+      <td>75%</td>
+      <td>0.987395</td>
+      <td>0.995726</td>
+      <td>0.995798</td>
+      <td>0.987288</td>
+      <td>0.978992</td>
+      <td>0.987395</td>
+    </tr>
+    <tr>
+      <td>max</td>
+      <td>0.988718</td>
+      <td>0.997245</td>
+      <td>0.997292</td>
+      <td>0.988621</td>
+      <td>0.980144</td>
+      <td>0.998177</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+boxplot = dfresultado.boxplot()
+```
+
+
+![png](output_126_0.png)
+
+
+
+```python
+Amplitudedic = {}
+Varianciadic = {}
+CoeficienteVardic = {}
+juntar = {}
+IntervaloInterquartildic = {}
+colunas=['Accuracy', 'Precision', 'Specificity', 'F1Score', 'Recall','AUC']
+for x in colunas:
+    juntar[x] = dfresultado[x].std()/1
+    Amplitudedic[x]=dfresultado[x].max() - dfresultado[x].min()
+    Varianciadic[x] = dfresultado[x].var()
+    CoeficienteVardic[x] = (dfresultado[x].std()/dfresultado[x].mean()) *  100
+    IntervaloInterquartildic[x] = dfresultado[x].quantile(q=0.75) - dfresultado[x].quantile(q=0.25)
+```
+
+
+```python
+dfAmplitude = pandas.DataFrame.from_dict(Amplitudedic, orient="index").reset_index()
+dfAmplitude.columns = ["quantitativas","Amplitude"]
+dfAmplitude.head()
+
+
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>quantitativas</th>
+      <th>Amplitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Accuracy</td>
+      <td>0.157836</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Precision</td>
+      <td>0.151091</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Specificity</td>
+      <td>0.144351</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>F1Score</td>
+      <td>0.161553</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Recall</td>
+      <td>0.171321</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+
+dfstd = pandas.DataFrame.from_dict(juntar, orient="index").reset_index()
+dfstd.columns = ["quantitativas","std"]
+dfstd.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>quantitativas</th>
+      <th>std</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Accuracy</td>
+      <td>0.067457</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Precision</td>
+      <td>0.063232</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Specificity</td>
+      <td>0.060712</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>F1Score</td>
+      <td>0.069372</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Recall</td>
+      <td>0.078305</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+dfVariancia = pandas.DataFrame.from_dict(Varianciadic, orient="index").reset_index()
+dfVariancia.columns = ["quantitativas","Variancia"]
+dfVariancia.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>quantitativas</th>
+      <th>Variancia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Accuracy</td>
+      <td>0.004550</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Precision</td>
+      <td>0.003998</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Specificity</td>
+      <td>0.003686</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>F1Score</td>
+      <td>0.004812</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Recall</td>
+      <td>0.006132</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+dfCoeficiente = pandas.DataFrame.from_dict(CoeficienteVardic, orient="index").reset_index()
+dfCoeficiente.columns = ["quantitativas","Coef_Var_%"]
+dfCoeficiente.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>quantitativas</th>
+      <th>Coef_Var_%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Accuracy</td>
+      <td>7.325174</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Precision</td>
+      <td>6.745293</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Specificity</td>
+      <td>6.456339</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>F1Score</td>
+      <td>7.550318</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Recall</td>
+      <td>8.686597</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+IntervaloInterquartil = pandas.DataFrame.from_dict(IntervaloInterquartildic, orient="index").reset_index()
+IntervaloInterquartil.columns = ["quantitativas","Intervalo_Interquartil"]
+IntervaloInterquartil.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>quantitativas</th>
+      <th>Intervalo_Interquartil</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Accuracy</td>
+      <td>0.095588</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Precision</td>
+      <td>0.084473</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Specificity</td>
+      <td>0.083343</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>F1Score</td>
+      <td>0.101352</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Recall</td>
+      <td>0.138655</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+dfresultado_frame=pandas.merge(dfAmplitude,dfVariancia,how='right',on='quantitativas')
+dfresultado_frame=pandas.merge(dfresultado_frame,dfCoeficiente,how='right',on='quantitativas')
+dfresultado_frame=pandas.merge(dfresultado_frame,IntervaloInterquartil,how='right',on='quantitativas')
+dfresultado_frame=pandas.merge(dfresultado_frame,dfstd,how='right',on='quantitativas')
+dfresultado_frame
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>quantitativas</th>
+      <th>Amplitude</th>
+      <th>Variancia</th>
+      <th>Coef_Var_%</th>
+      <th>Intervalo_Interquartil</th>
+      <th>std</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Accuracy</td>
+      <td>0.157836</td>
+      <td>0.004550</td>
+      <td>7.325174</td>
+      <td>0.095588</td>
+      <td>0.067457</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Precision</td>
+      <td>0.151091</td>
+      <td>0.003998</td>
+      <td>6.745293</td>
+      <td>0.084473</td>
+      <td>0.063232</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Specificity</td>
+      <td>0.144351</td>
+      <td>0.003686</td>
+      <td>6.456339</td>
+      <td>0.083343</td>
+      <td>0.060712</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>F1Score</td>
+      <td>0.161553</td>
+      <td>0.004812</td>
+      <td>7.550318</td>
+      <td>0.101352</td>
+      <td>0.069372</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Recall</td>
+      <td>0.171321</td>
+      <td>0.006132</td>
+      <td>8.686597</td>
+      <td>0.138655</td>
+      <td>0.078305</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>AUC</td>
+      <td>0.124996</td>
+      <td>0.002522</td>
+      <td>5.234431</td>
+      <td>0.027443</td>
+      <td>0.050222</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 
 
 ---
