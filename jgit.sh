@@ -2,6 +2,7 @@
 git config --global core.preloadindex true
 git config --global core.fscache true
 git config --global gc.auto 256
+	git add *
 if [ `git status | grep -e "modified" -e "new file" | wc -l` -gt 0 ];then
 	git pull
 	git status
