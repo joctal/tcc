@@ -356,7 +356,7 @@ msno.matrix(dataset,figsize=(12,5))
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x13102570>
+    <matplotlib.axes._subplots.AxesSubplot at 0x13921670>
 
 
 
@@ -364,7 +364,7 @@ msno.matrix(dataset,figsize=(12,5))
 ![png](output_13_1.png)
 
 
-### Tabela sem elementos nulos tem  a mesma dimensão da tabela original, portanto a base não possui valores nulos.
+###  A tabela sem elementos nulos tem  a mesma dimensão da tabela original, portanto a base não possui valores nulos.
 
 ## Verifica os tipos de dados de cada atributo.
 
@@ -432,7 +432,7 @@ dfHomens = dataset[dataset["label"] == "male"]
 dfMulheres = dataset[dataset["label"] == "female"]
 ```
 
-### Conferindo segmentações vozes masculinas.
+### Conferindo segmentações das vozes masculinas.
 
 
 ```python
@@ -644,7 +644,7 @@ dfHomens.tail(2)
 
 
 
-### Conferindo segmentações vozes femininas.
+### Conferindo segmentações das vozes femininas.
 
 
 ```python
@@ -856,7 +856,7 @@ dfMulheres.tail(2)
 
 
 
-### BOXPLOT  vozes femininas - Verificando discrepâncias
+### BOXPLOT:  vozes femininas - Verificando discrepâncias
 
 
 ```python
@@ -907,7 +907,7 @@ plt.show()
 ![png](output_31_0.png)
 
 
-### BOXPLOT vozes masculinas - Verificando discrepâncias
+### BOXPLOT: vozes masculinas - Verificando discrepâncias
 
 
 ```python
@@ -1010,7 +1010,7 @@ for z in range(0,NV):
       # This is added back by InteractiveShellApp.init_path()
     
 
-### Imprime dados discrepantes removidos nos dados  de vozes femininas
+### Imprimindo os dados discrepantes removidos nos dados  de vozes femininas
 
 
 ```python
@@ -1020,7 +1020,7 @@ msno.matrix(dfgrafico_test,figsize=(12,5))
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x1379f8d0>
+    <matplotlib.axes._subplots.AxesSubplot at 0x13fa09d0>
 
 
 
@@ -1065,7 +1065,7 @@ msno.matrix(dfMulheres,figsize=(12,5))
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x134b8dd0>
+    <matplotlib.axes._subplots.AxesSubplot at 0x13df77f0>
 
 
 
@@ -1099,7 +1099,7 @@ for z in range(0,NV):
       # This is added back by InteractiveShellApp.init_path()
     
 
-### Imprime dados discrepantes removidos nos dados  de vozes masculinas
+### ImprimIndo os dados discrepantes removidos nos dados  de vozes masculinas
 
 
 ```python
@@ -1109,7 +1109,7 @@ msno.matrix(dfgrafico_test,figsize=(12,5))
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x13342750>
+    <matplotlib.axes._subplots.AxesSubplot at 0x12794590>
 
 
 
@@ -1141,7 +1141,7 @@ for z in range(0,NV):
       # Remove the CWD from sys.path while we load stuff.
     
 
-### Imprime dados normalizados de vozes masculinas
+### Imprimindo os dados normalizados de vozes masculinas
 
 
 ```python
@@ -1151,7 +1151,7 @@ msno.matrix(dfHomens,figsize=(12,5))
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x139dd7f0>
+    <matplotlib.axes._subplots.AxesSubplot at 0x12823d50>
 
 
 
@@ -1159,7 +1159,7 @@ msno.matrix(dfHomens,figsize=(12,5))
 ![png](output_51_1.png)
 
 
-### BOXPLOT  vozes femininas
+### BOXPLOT:  vozes femininas
 
 
 ```python
@@ -1215,7 +1215,7 @@ plt.show()
 ![png](output_56_1.png)
 
 
-### BOXPLOT  vozes masculinas
+### BOXPLOT:  vozes masculinas
 
 
 ```python
@@ -1271,7 +1271,7 @@ plt.show()
 ![png](output_61_1.png)
 
 
-### Juntando  os dados vozes masculinas com femininas
+### Juntando  os dados das vozes masculinas com femininas
 
 
 ```python
@@ -1286,7 +1286,7 @@ plt.show()
 ![png](output_63_0.png)
 
 
-### Salvo o arquivo para modelos e para Rstudio
+### Salvando o arquivo para modelos e para Rstudio
 
 
 ```python
@@ -1782,7 +1782,7 @@ print(resultado)
     max      17.320     0.185  
     
 
-### Rotaciona a tabela descritiva
+### Rotacionando a tabela descritiva
 
 
 ```python
@@ -2075,7 +2075,7 @@ print(dataset.describe().transpose())
     modindx   3168.0  0.124  0.023  0.061  0.112  0.126  0.135   0.185
     
 
-### Em nossos dados existe apenas um variável *label* que é  Qualitativa Nominal sendo que demais são quantitativas contínuas
+### Nos dados existe apenas um variável *label* que é  Qualitativa Nominal sendo que demais são quantitativas contínuas
 
 
 ```python
@@ -2124,7 +2124,7 @@ A mediana é o valor que separa a metade superior da metade inferior de uma dist
 
 A moda é simples. Nada mais é que o valor que mais se repete dentro de um conjunto.
 
-## Vamos calcular moda.
+## Calculando a moda.
 
 ### Moda
 
@@ -3675,7 +3675,7 @@ freqsexodic['Total']=total
 
 ```python
 dffrequenciaSexo = pandas.DataFrame.from_dict(freqsexodic, orient="index").reset_index()
-dffrequenciaSexo.columns = ["qualitivas","contagem"]
+dffrequenciaSexo.columns = ["qualitativas","contagem"]
 
 ```
 
@@ -3683,19 +3683,19 @@ dffrequenciaSexo.columns = ["qualitivas","contagem"]
 ```python
 
 dffrequenciaSexoFR = pandas.DataFrame.from_dict(freqFRsexodic, orient="index").reset_index()
-dffrequenciaSexoFR.columns = ["qualitivas","freqRelativa"]
+dffrequenciaSexoFR.columns = ["qualitativas","freqRelativa"]
 ```
 
 
 ```python
 dffrequenciaSexoFRpc = pandas.DataFrame.from_dict(freqFRpcsexodic, orient="index").reset_index()
-dffrequenciaSexoFRpc.columns = ["qualitivas","freqRelativa%"]
+dffrequenciaSexoFRpc.columns = ["qualitativas","freqRelativa%"]
 ```
 
 
 ```python
-dftabelaFreqQualitativas=pandas.merge(dffrequenciaSexo,dffrequenciaSexoFR,how='right',on='qualitivas')
-dftabelaFreqQualitativas=pandas.merge(dftabelaFreqQualitativas,dffrequenciaSexoFRpc,how='right',on='qualitivas')
+dftabelaFreqQualitativas=pandas.merge(dffrequenciaSexo,dffrequenciaSexoFR,how='right',on='qualitativas')
+dftabelaFreqQualitativas=pandas.merge(dftabelaFreqQualitativas,dffrequenciaSexoFRpc,how='right',on='qualitativas')
 ```
 
 
@@ -3724,7 +3724,7 @@ dftabelaFreqQualitativas
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>qualitivas</th>
+      <th>qualitativas</th>
       <th>contagem</th>
       <th>freqRelativa</th>
       <th>freqRelativa%</th>
@@ -3763,10 +3763,10 @@ dftabelaFreqQualitativas
 print(dftabelaFreqQualitativas)
 ```
 
-      qualitivas  contagem  freqRelativa  freqRelativa%
-    0     female      1584           0.5           50.0
-    1       male      1584           0.5           50.0
-    2      Total      3168           1.0          100.0
+      qualitativas  contagem  freqRelativa  freqRelativa%
+    0       female      1584           0.5           50.0
+    1         male      1584           0.5           50.0
+    2        Total      3168           1.0          100.0
     
 
 ---
@@ -4372,7 +4372,7 @@ df.plot(kind='bar',figsize=(15,8),fontsize=18)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x5c52d70>
+    <matplotlib.axes._subplots.AxesSubplot at 0x12345e30>
 
 
 
@@ -4411,7 +4411,7 @@ df.plot(kind='bar',figsize=(15,8),fontsize=18)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x5c99fd0>
+    <matplotlib.axes._subplots.AxesSubplot at 0x123a40b0>
 
 
 
@@ -4450,7 +4450,7 @@ df.plot(kind='bar',figsize=(15,8),fontsize=18)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x13aeb070>
+    <matplotlib.axes._subplots.AxesSubplot at 0x123344d0>
 
 
 
@@ -4490,7 +4490,7 @@ df.plot(kind='bar',figsize=(15,8),fontsize=18)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x12019190>
+    <matplotlib.axes._subplots.AxesSubplot at 0x13dd37f0>
 
 
 
@@ -4537,7 +4537,7 @@ df.plot(kind='bar',figsize=(15,8),fontsize=18)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x13a97c10>
+    <matplotlib.axes._subplots.AxesSubplot at 0x1400a110>
 
 
 
@@ -4596,7 +4596,7 @@ df.plot(kind='bar',figsize=(15,8),fontsize=18)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x135f1930>
+    <matplotlib.axes._subplots.AxesSubplot at 0x13ec3510>
 
 
 
@@ -4643,7 +4643,7 @@ df.plot(kind='bar',figsize=(15,8),fontsize=18)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x13783370>
+    <matplotlib.axes._subplots.AxesSubplot at 0x13e656f0>
 
 
 
@@ -4687,7 +4687,7 @@ df.plot(kind='bar',figsize=(15,8),fontsize=18)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x1378d210>
+    <matplotlib.axes._subplots.AxesSubplot at 0x13fca830>
 
 
 
@@ -4727,7 +4727,7 @@ df.plot(kind='bar',figsize=(15,8),fontsize=18)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x13843290>
+    <matplotlib.axes._subplots.AxesSubplot at 0x13fc0450>
 
 
 
@@ -4765,7 +4765,7 @@ df.plot(kind='bar',figsize=(15,8),fontsize=18)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x5cb4770>
+    <matplotlib.axes._subplots.AxesSubplot at 0x13db3870>
 
 
 
@@ -4804,7 +4804,7 @@ df.plot(kind='bar',figsize=(15,8),fontsize=18)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x135db750>
+    <matplotlib.axes._subplots.AxesSubplot at 0x128ba110>
 
 
 
@@ -4849,7 +4849,7 @@ df.plot(kind='bar',figsize=(15,8),fontsize=18)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x13819bf0>
+    <matplotlib.axes._subplots.AxesSubplot at 0x13eb1970>
 
 
 
@@ -4886,7 +4886,7 @@ df.plot(kind='bar',figsize=(15,8),fontsize=18)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x137c5230>
+    <matplotlib.axes._subplots.AxesSubplot at 0x146252b0>
 
 
 
@@ -4926,7 +4926,7 @@ df.plot(kind='bar',figsize=(15,8),fontsize=18)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x13dd50f0>
+    <matplotlib.axes._subplots.AxesSubplot at 0x12672230>
 
 
 
@@ -4974,7 +4974,7 @@ sns.pairplot(df, vars=['sd', 'median','IQR', 'meanfun'], hue="label")
 
 
 
-    <seaborn.axisgrid.PairGrid at 0x140aab90>
+    <seaborn.axisgrid.PairGrid at 0x12665990>
 
 
 
@@ -4994,7 +4994,7 @@ sns.pairplot(df, vars=['IQR', 'meanfun','centroid', 'modindx'], hue="label")
 
 
 
-    <seaborn.axisgrid.PairGrid at 0x140aad70>
+    <seaborn.axisgrid.PairGrid at 0x128ba0f0>
 
 
 
