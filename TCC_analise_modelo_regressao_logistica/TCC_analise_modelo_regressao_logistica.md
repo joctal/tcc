@@ -1,7 +1,7 @@
 
-# Avaliação do Modelo de Classificação.
+# MODELO 1 - Avaliação do Modelo de Classificação.
 ### Introdução.
-##### Este  Notebook é destina a avaliação do modelo de regressão logística e separação do das  no arquivo voice_fix.csv
+##### Este  Notebook é destina a avaliação do modelo de regressão logística e separação dos dados  no arquivo voice_fix.csv
 
 
 ---
@@ -11,7 +11,7 @@
 ---
 
 
-##  Resumo da análise anterior com base tratada em python da base de propriedades acústicas.
+##  Resumo da análise anterior com a base tratada em python das propriedades acústicas.
 
 
 ```python
@@ -198,7 +198,7 @@ print(dataset.head(2).transpose())
     label          male        male
     
 
-##  3)  Substituindo female=1, male=0 e Adcoinando a coluna gênero para representar a classe como dummy.
+##  3)  Atribuindo para female=1 (Mulheres), male=0 (Homens) e adicionando a coluna gênero para representar a classe como dummy.
 
 
 ```python
@@ -273,8 +273,8 @@ print(df_pre.tail(2).transpose())
     genero            1          1
     
 
-#  4)   Dataset: Train/Test Split para do modelo de regressão logística.
-Esse método divide o conjunto de dados em duas partes: um conjunto de treinamento e um conjunto de testes. O conjunto de treinamento é usado para treinar o modelo. Também podemos medir a precisão do modelo no conjunto de treinamento, mas não devemos avaliar modelos com base somente nessa métrica.
+#  4)   Dataset: Train/Test Split para os modelos.
+Esse método divide o conjunto de dados em duas partes: um conjunto de treinamento e um conjunto de testes. O conjunto de treinamento é usado para treinar o modelo. Também podemos medir a precisão do modelo no conjunto de treinamento.
 
 Logistic Regression coefficients na formula:
  y=  1 * b0 + b1*X1 + b2*X2+ b3*Xn
@@ -318,6 +318,10 @@ print(df_pre.head().transpose())
 ## Separação dos dados pela classe label, vozes de homens e mulheres.
 df_male = df_pre[df_pre["label"] == "male"]
 df_female = df_pre[df_pre["label"] == "female"]
+
+
+
+
 ```
 
 
@@ -395,6 +399,9 @@ Y_entrada_female = df_female['genero']
 ```python
 print(X_entrada_female.head().transpose())
 
+feature_cols=X_entrada_female.columns
+feature_cols
+
 ```
 
                   1584      1585       1586       1587      1588
@@ -420,6 +427,16 @@ print(X_entrada_female.head().transpose())
     modindx   0.133931  0.129735   0.133931   0.133931  0.129735
     int       1.000000  1.000000   1.000000   1.000000  1.000000
     
+
+
+
+
+    Index(['meanfreq', 'sd', 'median', 'Q25', 'Q75', 'IQR', 'skew', 'kurt',
+           'sp.ent', 'sfm', 'mode', 'centroid', 'meanfun', 'minfun', 'maxfun',
+           'meandom', 'mindom', 'maxdom', 'dfrange', 'modindx', 'int'],
+          dtype='object')
+
+
 
 
 ```python
@@ -486,21 +503,21 @@ print(Y_entrada_male.head())
 
 ##  6)  Divisão balanceada de 30% teste e 70%  para o treino.
 
-#### Feito divisão  randômica de 30 test e 70 treino no dataframe_female
+### Feito a divisão  randômica de 30 test e 70 treino no dataframe_female
 
 
 ```python
 X_trainF,X_testF,y_trainF,y_testF = train_test_split(X_entrada_female,Y_entrada_female,test_size=0.30,random_state=0)
 ```
 
-#### Feito divisão randômica de 30 test e 70 treino no dataframe_male
+### Feito a divisão randômica de 30 test e 70 treino no dataframe_male
 
 
 ```python
 X_trainM, X_testM, y_trainM ,y_testM = train_test_split(X_entrada_male,Y_entrada_male,test_size=0.30,random_state=0)
 ```
 
-#### Concatenando os datraframes  Após ad divisão dos dados de treino e test  male e frame
+### Concatenando os datraframes  Após ad divisão dos dados de treino e test  male e frame
 
 
 ```python
@@ -522,7 +539,7 @@ y_test_frames = [y_testF, y_testM]
 y_train_frames = [ y_trainF,  y_trainM]
 ```
 
-### Convertendo os datraframes  após a divisão dos dados de treino e test  male e frame
+### Convertendo os datraframes  após a divisão dos dados de: treino e test,  male e frame
 
 
 ```python
@@ -544,7 +561,7 @@ y_train = pandas.concat(y_train_frames)
 y_test = pandas.concat(y_test_frames )
 ```
 
-### Mostratandos as dimensãoes dos dados
+### Mostratandos as dimensões dos dados
 
 
 ```python
@@ -566,7 +583,7 @@ dftreinoteste = pandas.DataFrame.from_dict(dictabela, orient="index").reset_inde
 
 
 ```python
-dftreinoteste =dftreinoteste.rename(columns={'index': 'divisão do dados'})
+dftreinoteste =dftreinoteste.rename(columns={'index': 'divisão dos dados'})
 dftreinoteste =dftreinoteste.rename(columns={0: 'total'})
 dftreinoteste
 
@@ -593,7 +610,7 @@ dftreinoteste
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>divisão do dados</th>
+      <th>divisão dos dados</th>
       <th>total</th>
     </tr>
   </thead>
@@ -714,7 +731,7 @@ print(X_train_norm)
     
 
 
-#  8)  Salva dados de treino e teste em um dicionario serializado.
+#  8)  Salvando os dados de treino e teste em um dicionário serializado.
 
 
 ```python
@@ -739,9 +756,10 @@ dic_base_treino_test['X_train_norm'] = X_train_norm
 
 ```python
 dic_base_treino_test['X_test_norm'] = X_test_norm
+dic_base_treino_test['feature_cols'] =  feature_cols
 ```
 
-### Salva dados para avaliação dos modelo
+### Salvando os dados para avaliação dos modelos
 
 
 ```python
@@ -765,7 +783,7 @@ with open(output, 'wb') as pickle_file:
 ---
 ---
 
-#  9) Carregando dados para avalição do modelo
+#  9) Carregando os dados para avaliação do modelo
 
 
 ```python
@@ -867,7 +885,7 @@ y_pred=classifier.predict(X_test)
 
 ---
 
-# Modelo de avaliação de métricas.
+# 12) Modelo de avaliação de métricas.
 
 ##  16)  Classificação
 
@@ -964,7 +982,7 @@ plt.show()
 ---
 
 ### True Positives:TP
-Este valor indica a quantidade de registros que foram classificados como positivos corretamente, ou seja, a resposta do classificador foi que o comentário era positivo e o comentário realmente era positivo.
+Este valor indica a quantidade de registros que foram classificados como positivos corretamente.
 
 
 ```python
@@ -1024,7 +1042,7 @@ print(dfTP)
 ---
 
 ### True Negatives:TN
-Este valor indica a quantidade de registros que foram classificados como negativos de maneira correta, ou seja, a resposta do classificador foi que o comentário era negativo e o comentário realmente era negativo.
+Este valor indica a quantidade de registros que foram classificados como negativos de maneira correta.
 
 
 ```python
@@ -1084,7 +1102,7 @@ print(dfTN)
 ---
 
 ### Falso Positivos - False Positives:FP
-Este valor indica a quantidade de registros que foram classificados como comentários positivos de maneira incorreta, ou seja, a resposta do classificador foi que o comentário era positivo, mas o comentário era negativo.
+Este valor indica a quantidade de registros que foram classificados como comentários positivos de maneira incorreta.
 
 
 ```python
@@ -1144,7 +1162,7 @@ print(dfFP)
 ---
 
 ### False Negatives:FN
-Este valor indica a quantidade de registros que foram classificados como comentários negativos de maneira incorreta, ou seja, a resposta do classificador foi que o comentário era negativo, mas o comentário era positivo.
+Este valor indica a quantidade de registros que foram classificados como comentários negativos de maneira incorreta.
 
 
 ```python
@@ -1629,7 +1647,7 @@ print(dfF1Score)
     
 
 ---
-### Curva ROC
+### 13) Curva ROC
 Uma curva ROC é uma forma comumente usada para visualizar o desempenho de um classificador binário, significando um classificador com duas classes de saída possíveis. A curva plota a Taxa Positiva Real (Recall) contra a Taxa Falsa Positiva (também interpretada como Especificidade 1).
 
 
@@ -1759,7 +1777,7 @@ import pickle
 
 
 ```python
-filename = 'regressaologitica.jss'
+filename = '.\\baseDados\\regressaologitica.jss'
 outfile = open(filename,'wb')
 pickle.dump(dic_logist,outfile)
 outfile.close()
