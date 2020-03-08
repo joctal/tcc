@@ -123,7 +123,7 @@ rf_model = RandomForestClassifier(random_state=1,n_estimators=100,min_impurity_d
 
 
 ```python
-rf_model.fit(X_train, y_train.ravel())
+rf_model.fit(X_train, y_train)
 ```
 
 
@@ -522,7 +522,7 @@ svm_model.fit(X_train, y_train)
 
 
 ```python
-svm_pred = svm_model.predict(X_train)
+svm_pred = svm_model.predict(X_test)
 
 ```
 
@@ -534,11 +534,11 @@ svm_pred = svm_model.predict(X_train)
 
 
 ```python
-print(f"accuracy score: {accuracy_score(y_train, svm_pred):.4f}\n")
-svm_accuracy_testdata = accuracy_score(y_train, svm_pred)
+print(f"accuracy score: {accuracy_score(y_test, svm_pred):.4f}\n")
+svm_accuracy_testdata = accuracy_score(y_test, svm_pred)
 ```
 
-    accuracy score: 0.9887
+    accuracy score: 0.9874
     
     
 
@@ -546,7 +546,7 @@ svm_accuracy_testdata = accuracy_score(y_train, svm_pred)
 
 
 ```python
-cm=confusion_matrix(y_train, svm_model.predict(X_train))
+cm=confusion_matrix(y_test, svm_model.predict(X_test))
 ```
 
 
@@ -591,15 +591,15 @@ confusion_matrix_lda
   <tbody>
     <tr>
       <td>Negativos</td>
-      <td>1105</td>
-      <td>3</td>
-      <td>1108</td>
+      <td>475</td>
+      <td>1</td>
+      <td>476</td>
     </tr>
     <tr>
       <td>Positivos</td>
-      <td>22</td>
-      <td>1086</td>
-      <td>1108</td>
+      <td>11</td>
+      <td>465</td>
+      <td>476</td>
     </tr>
   </tbody>
 </table>
@@ -617,7 +617,7 @@ TP
 
 
 
-    1086
+    465
 
 
 
@@ -631,7 +631,7 @@ TN
 
 
 
-    1105
+    475
 
 
 
@@ -645,7 +645,7 @@ FP
 
 
 
-    3
+    1
 
 
 
@@ -659,24 +659,24 @@ FN
 
 
 
-    22
+    11
 
 
 
 
 ```python
-print(f"accuracy score: {accuracy_score(y_train, svm_pred):.4f}\n")
-svmAccuracy = accuracy_score(y_train, svm_pred)
+print(f"accuracy score: {accuracy_score(y_test, svm_pred):.4f}\n")
+svmAccuracy = accuracy_score(y_test, svm_pred)
 ```
 
-    accuracy score: 0.9887
+    accuracy score: 0.9874
     
     
 
 
 ```python
 import plot as plot
-cm=confusion_matrix(y_train, svm_model.predict(X_train))
+cm=confusion_matrix(y_test, svm_model.predict(X_test))
 #Plot the confusion matrix
 plt.rcParams['figure.figsize'] = (10,5)
 sb.set(font_scale=1.5)
@@ -692,30 +692,30 @@ plt.show()
 
 
 ```python
-print(f"Classification Report: \n \tPrecision: {precision_score(y_train, svm_pred)}\n\tRecall Score: {recall_score(y_train,svm_pred)}\n\tF1 score: {f1_score(y_train, svm_pred)}\n")
+print(f"Classification Report: \n \tPrecision: {precision_score(y_test, svm_pred)}\n\tRecall Score: {recall_score(y_test,svm_pred)}\n\tF1 score: {f1_score(y_test, svm_pred)}\n")
 
 ```
 
     Classification Report: 
-     	Precision: 0.9972451790633609
-    	Recall Score: 0.98014440433213
-    	F1 score: 0.9886208466090123
+     	Precision: 0.9978540772532188
+    	Recall Score: 0.976890756302521
+    	F1 score: 0.9872611464968152
     
     
 
 
 ```python
-svmPrecision = precision_score(y_train, svm_pred)
+svmPrecision = precision_score(y_test, svm_pred)
 ```
 
 
 ```python
-svmRecall = recall_score(y_train, svm_pred)
+svmRecall = recall_score(y_test, svm_pred)
 ```
 
 
 ```python
-svmF1_score = f1_score(y_train, svm_pred)
+svmF1_score = f1_score(y_test, svm_pred)
 ```
 
 
@@ -728,7 +728,7 @@ svmSpecificity
 
 
 
-    0.9972924187725631
+    0.9978991596638656
 
 
 
@@ -802,7 +802,7 @@ nb_model.fit(X_train, y_train)
 
 
 ```python
-nb_pred = nb_model.predict(X_train)
+nb_pred = nb_model.predict(X_test)
 ```
 
 ##  Modelo de avaliação de métricas. NB.
@@ -812,11 +812,11 @@ nb_pred = nb_model.predict(X_train)
 
 ```python
 #get accuracy
-print(f"accuracy score: {accuracy_score(y_train, nb_pred):.4f}\n")
-nb_accuracy_testdata = accuracy_score(y_train, nb_pred)
+print(f"accuracy score: {accuracy_score(y_test, nb_pred):.4f}\n")
+nb_accuracy_testdata = accuracy_score(y_test, nb_pred)
 ```
 
-    accuracy score: 0.9057
+    accuracy score: 0.8761
     
     
 
@@ -824,7 +824,7 @@ nb_accuracy_testdata = accuracy_score(y_train, nb_pred)
 
 
 ```python
-cm=confusion_matrix(y_train, nb_model.predict(X_train))
+cm=confusion_matrix(y_test, nb_model.predict(X_test))
 confusion_matrix_lda = pandas.DataFrame(cm, index = ['Negativos','Positivos'], columns = ['Previsão dos negativos','Previsão dos positivos'] )
 confusion_matrix_lda['Total'] = 1
 confusion_matrix_lda['Total'][0] = cm[0][0] + cm[0][1]
@@ -861,15 +861,15 @@ confusion_matrix_lda
   <tbody>
     <tr>
       <td>Negativos</td>
-      <td>1011</td>
-      <td>97</td>
-      <td>1108</td>
+      <td>422</td>
+      <td>54</td>
+      <td>476</td>
     </tr>
     <tr>
       <td>Positivos</td>
-      <td>112</td>
-      <td>996</td>
-      <td>1108</td>
+      <td>64</td>
+      <td>412</td>
+      <td>476</td>
     </tr>
   </tbody>
 </table>
@@ -880,7 +880,7 @@ confusion_matrix_lda
 
 ```python
 import plot as plot
-cm=confusion_matrix(y_train, nb_model.predict(X_train))
+cm=confusion_matrix(y_test, nb_model.predict(X_test))
 #Plot the confusion matrix
 plt.rcParams['figure.figsize'] = (10,5)
 sb.set(font_scale=1.5)
@@ -896,14 +896,14 @@ plt.show()
 
 
 ```python
-print(f"Classification Report: \n \tPrecision: {precision_score(y_train, nb_pred)}\n\tRecall Score: {recall_score(y_train,nb_pred)}\n\tF1 score: {f1_score(y_train, nb_pred)}\n")
+print(f"Classification Report: \n \tPrecision: {precision_score(y_test, nb_pred)}\n\tRecall Score: {recall_score(y_test,nb_pred)}\n\tF1 score: {f1_score(y_test, nb_pred)}\n")
 
 ```
 
     Classification Report: 
-     	Precision: 0.9112534309240622
-    	Recall Score: 0.8989169675090253
-    	F1 score: 0.9050431621990005
+     	Precision: 0.8841201716738197
+    	Recall Score: 0.865546218487395
+    	F1 score: 0.8747346072186836
     
     
 
@@ -917,7 +917,7 @@ TP
 
 
 
-    996
+    412
 
 
 
@@ -931,7 +931,7 @@ TN
 
 
 
-    1011
+    422
 
 
 
@@ -945,7 +945,7 @@ FP
 
 
 
-    97
+    54
 
 
 
@@ -959,33 +959,33 @@ FN
 
 
 
-    112
+    64
 
 
 
 
 ```python
-print(f"accuracy score: {accuracy_score(y_train, nb_pred):.4f}\n")
-nbAccuracy = accuracy_score(y_train, nb_pred)
+print(f"accuracy score: {accuracy_score(y_test, nb_pred):.4f}\n")
+nbAccuracy = accuracy_score(y_test, nb_pred)
 ```
 
-    accuracy score: 0.9057
+    accuracy score: 0.8761
     
     
 
 
 ```python
-nbPrecision = precision_score(y_train, nb_pred)
+nbPrecision = precision_score(y_test, nb_pred)
 ```
 
 
 ```python
-nbRecall = recall_score(y_train, nb_pred)
+nbRecall = recall_score(y_test, nb_pred)
 ```
 
 
 ```python
-nbF1_score = f1_score(y_train, nb_pred)
+nbF1_score = f1_score(y_test, nb_pred)
 ```
 
 
@@ -998,7 +998,7 @@ nbSpecificity
 
 
 
-    0.9124548736462094
+    0.8865546218487395
 
 
 
@@ -1238,20 +1238,20 @@ dfresultado
     </tr>
     <tr>
       <td>SVM</td>
-      <td>0.988718</td>
-      <td>0.997245</td>
-      <td>0.997292</td>
-      <td>0.988621</td>
-      <td>0.980144</td>
+      <td>0.987395</td>
+      <td>0.997854</td>
+      <td>0.997899</td>
+      <td>0.987261</td>
+      <td>0.976891</td>
       <td>0.998177</td>
     </tr>
     <tr>
       <td>Naive Bayes</td>
-      <td>0.905686</td>
-      <td>0.911253</td>
-      <td>0.912455</td>
-      <td>0.905043</td>
-      <td>0.898917</td>
+      <td>0.876050</td>
+      <td>0.884120</td>
+      <td>0.886555</td>
+      <td>0.874735</td>
+      <td>0.865546</td>
       <td>0.959952</td>
     </tr>
   </tbody>
@@ -1306,20 +1306,20 @@ dfresultado.describe()
     </tr>
     <tr>
       <td>mean</td>
-      <td>0.920898</td>
-      <td>0.937429</td>
-      <td>0.940353</td>
-      <td>0.918791</td>
-      <td>0.901443</td>
+      <td>0.914706</td>
+      <td>0.932125</td>
+      <td>0.935294</td>
+      <td>0.912457</td>
+      <td>0.894118</td>
       <td>0.959456</td>
     </tr>
     <tr>
       <td>std</td>
-      <td>0.067457</td>
-      <td>0.063232</td>
-      <td>0.060712</td>
-      <td>0.069372</td>
-      <td>0.078305</td>
+      <td>0.070022</td>
+      <td>0.067236</td>
+      <td>0.064810</td>
+      <td>0.071786</td>
+      <td>0.079118</td>
       <td>0.050222</td>
     </tr>
     <tr>
@@ -1333,20 +1333,20 @@ dfresultado.describe()
     </tr>
     <tr>
       <td>25%</td>
-      <td>0.891807</td>
-      <td>0.911253</td>
-      <td>0.912455</td>
-      <td>0.885936</td>
+      <td>0.876050</td>
+      <td>0.884120</td>
+      <td>0.886555</td>
+      <td>0.874735</td>
       <td>0.840336</td>
       <td>0.959952</td>
     </tr>
     <tr>
       <td>50%</td>
-      <td>0.905686</td>
+      <td>0.891807</td>
       <td>0.936768</td>
       <td>0.943277</td>
-      <td>0.905043</td>
-      <td>0.898917</td>
+      <td>0.885936</td>
+      <td>0.865546</td>
       <td>0.978577</td>
     </tr>
     <tr>
@@ -1354,17 +1354,17 @@ dfresultado.describe()
       <td>0.987395</td>
       <td>0.995726</td>
       <td>0.995798</td>
-      <td>0.987288</td>
-      <td>0.978992</td>
+      <td>0.987261</td>
+      <td>0.976891</td>
       <td>0.987395</td>
     </tr>
     <tr>
       <td>max</td>
-      <td>0.988718</td>
-      <td>0.997245</td>
-      <td>0.997292</td>
-      <td>0.988621</td>
-      <td>0.980144</td>
+      <td>0.987395</td>
+      <td>0.997854</td>
+      <td>0.997899</td>
+      <td>0.987288</td>
+      <td>0.978992</td>
       <td>0.998177</td>
     </tr>
   </tbody>
@@ -1436,27 +1436,27 @@ dfAmplitude.head()
     <tr>
       <td>0</td>
       <td>Accuracy</td>
-      <td>0.157836</td>
+      <td>0.156513</td>
     </tr>
     <tr>
       <td>1</td>
       <td>Precision</td>
-      <td>0.151091</td>
+      <td>0.151700</td>
     </tr>
     <tr>
       <td>2</td>
       <td>Specificity</td>
-      <td>0.144351</td>
+      <td>0.144958</td>
     </tr>
     <tr>
       <td>3</td>
       <td>F1Score</td>
-      <td>0.161553</td>
+      <td>0.160220</td>
     </tr>
     <tr>
       <td>4</td>
       <td>Recall</td>
-      <td>0.171321</td>
+      <td>0.170168</td>
     </tr>
   </tbody>
 </table>
@@ -1501,27 +1501,27 @@ dfstd.head()
     <tr>
       <td>0</td>
       <td>Accuracy</td>
-      <td>0.067457</td>
+      <td>0.070022</td>
     </tr>
     <tr>
       <td>1</td>
       <td>Precision</td>
-      <td>0.063232</td>
+      <td>0.067236</td>
     </tr>
     <tr>
       <td>2</td>
       <td>Specificity</td>
-      <td>0.060712</td>
+      <td>0.064810</td>
     </tr>
     <tr>
       <td>3</td>
       <td>F1Score</td>
-      <td>0.069372</td>
+      <td>0.071786</td>
     </tr>
     <tr>
       <td>4</td>
       <td>Recall</td>
-      <td>0.078305</td>
+      <td>0.079118</td>
     </tr>
   </tbody>
 </table>
@@ -1565,27 +1565,27 @@ dfVariancia.head()
     <tr>
       <td>0</td>
       <td>Accuracy</td>
-      <td>0.004550</td>
+      <td>0.004903</td>
     </tr>
     <tr>
       <td>1</td>
       <td>Precision</td>
-      <td>0.003998</td>
+      <td>0.004521</td>
     </tr>
     <tr>
       <td>2</td>
       <td>Specificity</td>
-      <td>0.003686</td>
+      <td>0.004200</td>
     </tr>
     <tr>
       <td>3</td>
       <td>F1Score</td>
-      <td>0.004812</td>
+      <td>0.005153</td>
     </tr>
     <tr>
       <td>4</td>
       <td>Recall</td>
-      <td>0.006132</td>
+      <td>0.006260</td>
     </tr>
   </tbody>
 </table>
@@ -1629,27 +1629,27 @@ dfCoeficiente.head()
     <tr>
       <td>0</td>
       <td>Accuracy</td>
-      <td>7.325174</td>
+      <td>7.655154</td>
     </tr>
     <tr>
       <td>1</td>
       <td>Precision</td>
-      <td>6.745293</td>
+      <td>7.213160</td>
     </tr>
     <tr>
       <td>2</td>
       <td>Specificity</td>
-      <td>6.456339</td>
+      <td>6.929388</td>
     </tr>
     <tr>
       <td>3</td>
       <td>F1Score</td>
-      <td>7.550318</td>
+      <td>7.867351</td>
     </tr>
     <tr>
       <td>4</td>
       <td>Recall</td>
-      <td>8.686597</td>
+      <td>8.848760</td>
     </tr>
   </tbody>
 </table>
@@ -1693,27 +1693,27 @@ IntervaloInterquartil.head()
     <tr>
       <td>0</td>
       <td>Accuracy</td>
-      <td>0.095588</td>
+      <td>0.111345</td>
     </tr>
     <tr>
       <td>1</td>
       <td>Precision</td>
-      <td>0.084473</td>
+      <td>0.111606</td>
     </tr>
     <tr>
       <td>2</td>
       <td>Specificity</td>
-      <td>0.083343</td>
+      <td>0.109244</td>
     </tr>
     <tr>
       <td>3</td>
       <td>F1Score</td>
-      <td>0.101352</td>
+      <td>0.112527</td>
     </tr>
     <tr>
       <td>4</td>
       <td>Recall</td>
-      <td>0.138655</td>
+      <td>0.136555</td>
     </tr>
   </tbody>
 </table>
@@ -1763,47 +1763,47 @@ dfresultado_frame
     <tr>
       <td>0</td>
       <td>Accuracy</td>
-      <td>0.157836</td>
-      <td>0.004550</td>
-      <td>7.325174</td>
-      <td>0.095588</td>
-      <td>0.067457</td>
+      <td>0.156513</td>
+      <td>0.004903</td>
+      <td>7.655154</td>
+      <td>0.111345</td>
+      <td>0.070022</td>
     </tr>
     <tr>
       <td>1</td>
       <td>Precision</td>
-      <td>0.151091</td>
-      <td>0.003998</td>
-      <td>6.745293</td>
-      <td>0.084473</td>
-      <td>0.063232</td>
+      <td>0.151700</td>
+      <td>0.004521</td>
+      <td>7.213160</td>
+      <td>0.111606</td>
+      <td>0.067236</td>
     </tr>
     <tr>
       <td>2</td>
       <td>Specificity</td>
-      <td>0.144351</td>
-      <td>0.003686</td>
-      <td>6.456339</td>
-      <td>0.083343</td>
-      <td>0.060712</td>
+      <td>0.144958</td>
+      <td>0.004200</td>
+      <td>6.929388</td>
+      <td>0.109244</td>
+      <td>0.064810</td>
     </tr>
     <tr>
       <td>3</td>
       <td>F1Score</td>
-      <td>0.161553</td>
-      <td>0.004812</td>
-      <td>7.550318</td>
-      <td>0.101352</td>
-      <td>0.069372</td>
+      <td>0.160220</td>
+      <td>0.005153</td>
+      <td>7.867351</td>
+      <td>0.112527</td>
+      <td>0.071786</td>
     </tr>
     <tr>
       <td>4</td>
       <td>Recall</td>
-      <td>0.171321</td>
-      <td>0.006132</td>
-      <td>8.686597</td>
-      <td>0.138655</td>
-      <td>0.078305</td>
+      <td>0.170168</td>
+      <td>0.006260</td>
+      <td>8.848760</td>
+      <td>0.136555</td>
+      <td>0.079118</td>
     </tr>
     <tr>
       <td>5</td>
